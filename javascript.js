@@ -1,11 +1,32 @@
 /* ==========================================
    SUPERIOR TOUCH LUXURY ECOMMERCE
-   JavaScript
+   COMPLETE SCRIPT (LOADER FIXED)
 ========================================== */
 
-// Hide Loader
+// ----------------------
+// Loader (Never Freeze)
+// ----------------------
+
+document.addEventListener("DOMContentLoaded", () => {
+  const loader = document.getElementById("loader");
+
+  if (loader) {
+    setTimeout(() => {
+      loader.style.opacity = "0";
+      loader.style.visibility = "hidden";
+      loader.style.pointerEvents = "none";
+
+      setTimeout(() => {
+        loader.style.display = "none";
+      }, 300);
+
+    }, 500);
+  }
+});
+
 window.addEventListener("load", () => {
-    document.getElementById("loader").style.display = "none";
+  const loader = document.getElementById("loader");
+  if (loader) loader.style.display = "none";
 });
 
 // ----------------------
@@ -14,40 +35,40 @@ window.addEventListener("load", () => {
 
 const products = [
 
-    // AGBADA
-    {name:"Premium Agbada", price:150000, category:"Agbada", image:"images/IMG-20260826-WA0011.jpg"},
-    {name:"Luxury Agbada", price:150000, category:"Agbada", image:"images/IMG-20260826-WA0012.jpg"},
-    {name:"Royal Agbada", price:150000, category:"Agbada", image:"images/IMG-20260826-WA0013.jpg"},
-    {name:"Classic Agbada", price:150000, category:"Agbada", image:"images/IMG-20260826-WA0014.jpg"},
-    {name:"Blue Agbada", price:150000, category:"Agbada", image:"images/IMG-20260826-WA0015.jpg"},
-    {name:"Black Agbada", price:150000, category:"Agbada", image:"images/IMG-20260826-WA0016.jpg"},
-    {name:"White Agbada", price:150000, category:"Agbada", image:"images/IMG-20260826-WA0054.jpg"},
+  // AGBADA
+  {name:"Premium Agbada", price:150000, category:"Agbada", image:"images/IMG-20260826-WA0011.jpg"},
+  {name:"Luxury Agbada", price:150000, category:"Agbada", image:"images/IMG-20260826-WA0012.jpg"},
+  {name:"Royal Agbada", price:150000, category:"Agbada", image:"images/IMG-20260826-WA0013.jpg"},
+  {name:"Classic Agbada", price:150000, category:"Agbada", image:"images/IMG-20260826-WA0014.jpg"},
+  {name:"Blue Agbada", price:150000, category:"Agbada", image:"images/IMG-20260826-WA0015.jpg"},
+  {name:"Black Agbada", price:150000, category:"Agbada", image:"images/IMG-20260826-WA0016.jpg"},
+  {name:"White Agbada", price:150000, category:"Agbada", image:"images/IMG-20260826-WA0054.jpg"},
 
-    // KAFTAN
-    {name:"Premium Kaftan", price:50000, category:"Kaftan", image:"images/IMG-20260826-WA0024.jpg"},
-    {name:"Luxury Kaftan", price:50000, category:"Kaftan", image:"images/IMG-20260826-WA0025.jpg"},
-    {name:"Purple Kaftan", price:50000, category:"Kaftan", image:"images/IMG-20260826-WA0028.jpg"},
-    {name:"White Kaftan", price:50000, category:"Kaftan", image:"images/IMG-20260826-WA0036.jpg"},
+  // KAFTAN
+  {name:"Premium Kaftan", price:50000, category:"Kaftan", image:"images/IMG-20260826-WA0024.jpg"},
+  {name:"Luxury Kaftan", price:50000, category:"Kaftan", image:"images/IMG-20260826-WA0025.jpg"},
+  {name:"Purple Kaftan", price:50000, category:"Kaftan", image:"images/IMG-20260826-WA0028.jpg"},
+  {name:"White Kaftan", price:50000, category:"Kaftan", image:"images/IMG-20260826-WA0036.jpg"},
 
-    // AREWA CAPS
-    {name:"Premium Arewa Cap", price:50000, category:"Cap", image:"images/IMG-20260826-WA0004.jpg"},
-    {name:"Blue Arewa Cap", price:50000, category:"Cap", image:"images/IMG-20260826-WA0005.jpg"},
-    {name:"Gold Arewa Cap", price:50000, category:"Cap", image:"images/IMG-20260826-WA0006.jpg"},
-    {name:"Black Arewa Cap", price:50000, category:"Cap", image:"images/IMG-20260826-WA0007.jpg"},
-    {name:"Luxury Arewa Cap", price:50000, category:"Cap", image:"images/IMG-20260826-WA0008.jpg"},
+  // AREWA CAPS
+  {name:"Premium Arewa Cap", price:50000, category:"Cap", image:"images/IMG-20260826-WA0004.jpg"},
+  {name:"Blue Arewa Cap", price:50000, category:"Cap", image:"images/IMG-20260826-WA0005.jpg"},
+  {name:"Gold Arewa Cap", price:50000, category:"Cap", image:"images/IMG-20260826-WA0006.jpg"},
+  {name:"Black Arewa Cap", price:50000, category:"Cap", image:"images/IMG-20260826-WA0007.jpg"},
+  {name:"Luxury Arewa Cap", price:50000, category:"Cap", image:"images/IMG-20260826-WA0008.jpg"},
 
-    // ASO OKE CAPS
-    {name:"Aso Oke Cap", price:8000, category:"Cap", image:"images/IMG-20260826-WA0047.jpg"},
-    {name:"Purple Aso Oke Cap", price:8000, category:"Cap", image:"images/IMG-20260826-WA0048.jpg"},
-    {name:"Multi Aso Oke Cap", price:8000, category:"Cap", image:"images/IMG-20260826-WA0049.jpg"},
-    {name:"Brown Aso Oke Cap", price:8000, category:"Cap", image:"images/IMG-20260826-WA0050.jpg"},
-    {name:"Navy Aso Oke Cap", price:8000, category:"Cap", image:"images/IMG-20260826-WA0009.jpg"},
-    {name:"Gold Aso Oke Cap", price:8000, category:"Cap", image:"images/IMG-20260826-WA0010.jpg"},
+  // ASO OKE CAPS
+  {name:"Aso Oke Cap", price:8000, category:"Cap", image:"images/IMG-20260826-WA0047.jpg"},
+  {name:"Purple Aso Oke Cap", price:8000, category:"Cap", image:"images/IMG-20260826-WA0048.jpg"},
+  {name:"Multi Aso Oke Cap", price:8000, category:"Cap", image:"images/IMG-20260826-WA0049.jpg"},
+  {name:"Brown Aso Oke Cap", price:8000, category:"Cap", image:"images/IMG-20260826-WA0050.jpg"},
+  {name:"Navy Aso Oke Cap", price:8000, category:"Cap", image:"images/IMG-20260826-WA0009.jpg"},
+  {name:"Gold Aso Oke Cap", price:8000, category:"Cap", image:"images/IMG-20260826-WA0010.jpg"},
 
-    // BAGGY PANTS
-    {name:"Khaki Baggy Pant", price:15000, category:"Pant", image:"images/IMG-20260826-WA0019.jpg"},
-    {name:"White Baggy Pant", price:15000, category:"Pant", image:"images/IMG-20260826-WA0020.jpg"},
-    {name:"Grey Baggy Pant", price:15000, category:"Pant", image:"images/IMG-20260826-WA0023.jpg"}
+  // BAGGY PANTS
+  {name:"Khaki Baggy Pant", price:15000, category:"Pant", image:"images/IMG-20260826-WA0019.jpg"},
+  {name:"White Baggy Pant", price:15000, category:"Pant", image:"images/IMG-20260826-WA0020.jpg"},
+  {name:"Grey Baggy Pant", price:15000, category:"Pant", image:"images/IMG-20260826-WA0023.jpg"}
 
 ];
 
@@ -56,77 +77,77 @@ const products = [
 // ----------------------
 
 const productGrid = document.getElementById("productGrid");
+const searchBox = document.getElementById("searchBox");
 
 function renderProducts(list){
 
-    productGrid.innerHTML="";
+  if(!productGrid) return;
 
-    list.forEach(product=>{
+  productGrid.innerHTML="";
 
-        productGrid.innerHTML += `
+  list.forEach(product=>{
 
-        <div class="product-card">
+    const card=document.createElement("div");
+    card.className="product-card";
 
-            <img src="${product.image}" alt="${product.name}">
+    card.innerHTML=`
+      <img src="${product.image}" alt="${product.name}">
+      <h3>${product.name}</h3>
+      <p>₦${product.price.toLocaleString()}</p>
+      <button>Order Now</button>
+    `;
 
-            <h3>${product.name}</h3>
-
-            <p>₦${product.price.toLocaleString()}</p>
-
-            <button onclick="addToCart('${product.name}',${product.price})">
-
-                Order Now
-
-            </button>
-
-        </div>
-
-        `;
-
+    card.querySelector("button").addEventListener("click",()=>{
+      addToCart(product.name,product.price);
     });
+
+    productGrid.appendChild(card);
+
+  });
 
 }
 
 renderProducts(products);
 
 // ----------------------
-// Live Search
+// Search
 // ----------------------
 
-const searchBox=document.getElementById("searchBox");
+if(searchBox){
 
-searchBox.addEventListener("keyup",()=>{
+searchBox.addEventListener("input",()=>{
 
-    const value=searchBox.value.toLowerCase();
+const value=searchBox.value.toLowerCase();
 
-    const filtered=products.filter(item=>
+const filtered=products.filter(item=>
 
-        item.name.toLowerCase().includes(value) ||
+item.name.toLowerCase().includes(value)||
 
-        item.category.toLowerCase().includes(value)
+item.category.toLowerCase().includes(value)
 
-    );
+);
 
-    renderProducts(filtered);
+renderProducts(filtered);
 
 });
 
+}
+
 // ----------------------
-// Shopping Cart
+// Cart
 // ----------------------
 
 let cart=[];
-let total=0;
 
 function addToCart(name,price){
 
-    cart.push({name,price});
+cart.push({name,price});
 
-    total+=price;
+const count=document.getElementById("cartCount");
 
-    document.getElementById("cartCount").innerText=cart.length;
+if(count) count.textContent=cart.length;
 
-    alert(`${name} added to cart`);
+alert(`${name} added to cart`);
 
 }
 
@@ -136,9 +157,9 @@ function addToCart(name,price){
 
 const themeBtn=document.getElementById("themeBtn");
 
-themeBtn.addEventListener("click",()=>{
+themeBtn?.addEventListener("click",()=>{
 
-    document.body.classList.toggle("dark");
+document.body.classList.toggle("dark");
 
 });
 
@@ -149,17 +170,24 @@ themeBtn.addEventListener("click",()=>{
 const menuBtn=document.getElementById("menuBtn");
 const navMenu=document.getElementById("navMenu");
 
-menuBtn.addEventListener("click",()=>{
+menuBtn?.addEventListener("click",()=>{
 
-    if(navMenu.style.display==="flex"){
+if(!navMenu) return;
 
-        navMenu.style.display="none";
+navMenu.classList.toggle("show");
 
-    }else{
+});
 
-        navMenu.style.display="flex";
+// ----------------------
+// Cart Panel
+// ----------------------
 
-    }
+const cartBtn=document.getElementById("cartBtn");
+const cartPanel=document.getElementById("cartPanel");
+
+cartBtn?.addEventListener("click",()=>{
+
+cartPanel?.classList.toggle("show");
 
 });
 
@@ -169,72 +197,78 @@ menuBtn.addEventListener("click",()=>{
 
 const galleryImages=document.querySelectorAll(".gallery-grid img");
 
+if(galleryImages.length){
+
 const lightbox=document.createElement("div");
 
-lightbox.id="lightbox";
-
 lightbox.style.cssText=`
-
 position:fixed;
 top:0;
 left:0;
 width:100%;
 height:100%;
-background:rgba(0,0,0,.9);
+background:rgba(0,0,0,.92);
 display:none;
 justify-content:center;
 align-items:center;
 z-index:99999;
-
 `;
 
-const lightboxImg=document.createElement("img");
+const img=document.createElement("img");
 
-lightboxImg.style.maxWidth="90%";
-lightboxImg.style.maxHeight="90%";
-lightboxImg.style.borderRadius="15px";
+img.style.maxWidth="90%";
+img.style.maxHeight="90%";
+img.style.borderRadius="15px";
 
-lightbox.appendChild(lightboxImg);
+lightbox.appendChild(img);
 
 document.body.appendChild(lightbox);
 
-galleryImages.forEach(img=>{
+galleryImages.forEach(photo=>{
 
-    img.addEventListener("click",()=>{
+photo.addEventListener("click",()=>{
 
-        lightbox.style.display="flex";
+img.src=photo.src;
+lightbox.style.display="flex";
 
-        lightboxImg.src=img.src;
-
-    });
+});
 
 });
 
 lightbox.addEventListener("click",()=>{
 
-    lightbox.style.display="none";
+lightbox.style.display="none";
 
 });
+
+}
 
 // ----------------------
 // Smooth Scroll
 // ----------------------
 
-document.querySelectorAll("a[href^='#']").forEach(link=>{
+document.querySelectorAll('a[href^="#"]').forEach(link=>{
 
-    link.addEventListener("click",function(e){
+link.addEventListener("click",e=>{
 
-        e.preventDefault();
+const target=document.querySelector(link.getAttribute("href"));
 
-        document.querySelector(this.getAttribute("href"))
-        .scrollIntoView({behavior:"smooth"});
+if(target){
 
-    });
+e.preventDefault();
+
+target.scrollIntoView({
+behavior:"smooth"
+});
+
+}
+
+});
 
 });
 
 // ----------------------
-// Floating WhatsApp Button
+// WhatsApp Floating Button
 // ----------------------
 
 const whatsapp=document.createElement("a");
@@ -246,15 +280,14 @@ whatsapp.target="_blank";
 whatsapp.innerHTML="💬";
 
 whatsapp.style.cssText=`
-
 position:fixed;
-right:25px;
-bottom:25px;
+right:22px;
+bottom:22px;
 width:65px;
 height:65px;
 background:#25D366;
 color:white;
-font-size:34px;
+font-size:32px;
 display:flex;
 justify-content:center;
 align-items:center;
@@ -262,7 +295,6 @@ border-radius:50%;
 text-decoration:none;
 box-shadow:0 10px 30px rgba(0,0,0,.3);
 z-index:9999;
-
 `;
 
 document.body.appendChild(whatsapp);
