@@ -273,7 +273,7 @@ behavior:"smooth"
 
 const whatsapp=document.createElement("a");
 
-whatsapp.href="https://wa.me/2340000000000";
+whatsapp.href="https://wa.me/2348072924900";
 
 whatsapp.target="_blank";
 
