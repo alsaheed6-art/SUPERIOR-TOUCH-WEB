@@ -6,5 +6,7 @@
     config.apiBaseUrl = isLocalFrontend ? 'http://localhost:3001/api' : '';
   }
 
+  console.log('api-config.js', 'config.apiBaseUrl', config.apiBaseUrl);
+
   window.SUPERIOR_TOUCH_CONFIG = config;
 })();
