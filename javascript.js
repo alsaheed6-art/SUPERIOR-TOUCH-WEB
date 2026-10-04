@@ -33,7 +33,7 @@ window.addEventListener("load", () => {
 // Product Database
 // ----------------------
 
-const products = [
+let products = [
 
   // AGBADA
   {name:"Premium Agbada", price:150000, category:"Agbada", image:"images/IMG-20260826-WA0011.jpg"},
@@ -90,17 +90,23 @@ function renderProducts(list){
     const card=document.createElement("div");
     card.className="product-card";
 
-    card.innerHTML=`
-      <img src="${product.image}" alt="${product.name}">
-      <h3>${product.name}</h3>
-      <p>₦${product.price.toLocaleString()}</p>
-      <button>Order Now</button>
-    `;
+    const image=document.createElement("img");
+    image.src=product.image;
+    image.alt=product.name;
 
-    card.querySelector("button").addEventListener("click",()=>{
+    const name=document.createElement("h3");
+    name.textContent=product.name;
+
+    const price=document.createElement("p");
+    price.textContent=`₦${Number(product.price).toLocaleString()}`;
+
+    const orderButton=document.createElement("button");
+    orderButton.textContent="Order Now";
+    orderButton.addEventListener("click",()=>{
       addToCart(product.name,product.price);
     });
 
+    card.append(image,name,price,orderButton);
     productGrid.appendChild(card);
 
   });
@@ -132,6 +138,103 @@ renderProducts(filtered);
 });
 
 }
+
+// ----------------------
+// Optional API Catalog
+// ----------------------
+
+const API_BASE_URL=(window.SUPERIOR_TOUCH_CONFIG?.apiBaseUrl||"").replace(/\/+$/ ,"");
+
+async function apiRequest(path){
+
+  const response=await fetch(`${API_BASE_URL}${path}`,{
+    headers:{"Accept":"application/json"}
+  });
+
+  if(!response.ok){
+    const messages={
+      400:"The API rejected the request.",
+      401:"Authentication is required for this API request.",
+      403:"The API denied this request.",
+      404:"The requested API resource was not found.",
+      500:"The API encountered a server error."
+    };
+    throw new Error(messages[response.status]||`API request failed with status ${response.status}.`);
+  }
+
+  return response.json();
+
+}
+
+function safeImageUrl(value){
+
+  if(typeof value!=="string"||!value.trim()) return "";
+
+  try{
+    const url=new URL(value,document.baseURI);
+    return ["http:","https:"].includes(url.protocol)?value:"";
+  }catch{
+    return "";
+  }
+
+}
+
+async function loadCatalogFromApi(){
+
+  if(!API_BASE_URL) return;
+
+  try{
+    const [apiProducts,apiCategories]=await Promise.all([
+      apiRequest("/products"),
+      apiRequest("/categories")
+    ]);
+
+    if(!Array.isArray(apiProducts)||apiProducts.length===0) return;
+
+    const categoryNames=new Map();
+    if(Array.isArray(apiCategories)){
+      apiCategories.forEach(category=>{
+        if(category?.id&&category?.name) categoryNames.set(String(category.id),String(category.name));
+      });
+    }
+
+    const mergedProducts=[...products];
+
+    apiProducts.forEach(apiProduct=>{
+      const name=typeof apiProduct?.name==="string"?apiProduct.name.trim():"";
+      const price=Number(apiProduct?.price);
+      const category=typeof apiProduct?.category==="string"
+        ?apiProduct.category
+        :categoryNames.get(String(apiProduct?.categoryId));
+
+      if(!name||!Number.isFinite(price)||!category) return;
+
+      const matchingIndex=mergedProducts.findIndex(product=>product.name.toLowerCase()===name.toLowerCase());
+      const previous=matchingIndex>=0?mergedProducts[matchingIndex]:null;
+      const image=safeImageUrl(apiProduct.imageUrl||apiProduct.image)||previous?.image||"";
+
+      if(!image) return;
+
+      const normalized={name,price,category,image};
+      if(matchingIndex>=0){
+        mergedProducts[matchingIndex]=normalized;
+      }else{
+        mergedProducts.push(normalized);
+      }
+    });
+
+    products=mergedProducts;
+    const searchTerm=searchBox?.value.toLowerCase()||"";
+    renderProducts(searchTerm
+      ?products.filter(product=>product.name.toLowerCase().includes(searchTerm)||product.category.toLowerCase().includes(searchTerm))
+      :products);
+  }catch(error){
+    console.info("Superior Touch catalog API unavailable; showing the saved catalog.",error);
+  }
+
+}
+
+void loadCatalogFromApi();
 
 // ----------------------
 // Cart
