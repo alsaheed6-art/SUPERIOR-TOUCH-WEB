@@ -3,7 +3,7 @@
   const isLocalFrontend = ['localhost', '127.0.0.1'].includes(window.location.hostname);
 
   if (typeof config.apiBaseUrl !== 'string') {
-    config.apiBaseUrl = isLocalFrontend ? 'http://localhost:3001/api' : 'http://superior-touch-alb-1110599205.us-east-2.elb.amazonaws.com/api';
+    config.apiBaseUrl = isLocalFrontend ? 'http://localhost:3001/api' : 'https://d1ctfj1nygmfqe.cloudfront.net/api';
   }
 
   console.log('api-config.js', 'config.apiBaseUrl', config.apiBaseUrl);
