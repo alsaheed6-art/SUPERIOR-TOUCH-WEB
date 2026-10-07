@@ -71,6 +71,86 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
 
 </header>
 
+<div id="cartBackdrop" class="cart-backdrop" aria-hidden="true"></div>
+<aside id="cartPanel" class="cart-panel" aria-labelledby="cartTitle" aria-hidden="true">
+    <div class="cart-panel-header">
+        <div>
+            <p class="cart-kicker">SUPERIOR TOUCH</p>
+            <h2 id="cartTitle">Your Cart <span id="cartPanelCount">(0)</span></h2>
+        </div>
+        <button id="closeCartBtn" class="cart-close" type="button" aria-label="Close cart">&times;</button>
+    </div>
+
+    <div id="cartContent" class="cart-panel-content">
+        <section class="cart-section cart-items-section" aria-labelledby="cartItemsHeading">
+            <div class="cart-section-heading"><span class="cart-step">01</span><h3 id="cartItemsHeading">Cart Items</h3></div>
+            <div id="cartItems" class="cart-items"></div>
+        </section>
+
+        <form id="orderForm" class="order-form">
+            <section class="cart-section" aria-labelledby="customerInfoHeading">
+                <div class="cart-section-heading"><span class="cart-step">02</span><h3 id="customerInfoHeading">Customer Information</h3></div>
+                <label class="checkout-field">
+                    <span>Full name</span>
+                    <input name="customerName" type="text" autocomplete="name" maxlength="180" required>
+                </label>
+                <div class="checkout-field-row">
+                    <label class="checkout-field">
+                        <span>Phone number</span>
+                        <input name="customerPhone" type="tel" autocomplete="tel" maxlength="40" required>
+                    </label>
+                    <label class="checkout-field">
+                        <span>Email <small>Optional</small></span>
+                        <input name="customerEmail" type="email" autocomplete="email" maxlength="254">
+                    </label>
+                </div>
+            </section>
+
+            <section class="cart-section" aria-labelledby="deliveryInfoHeading">
+                <div class="cart-section-heading"><span class="cart-step">03</span><h3 id="deliveryInfoHeading">Delivery Information</h3></div>
+                <label class="checkout-field">
+                    <span>Delivery address</span>
+                    <input name="deliveryAddress" type="text" autocomplete="street-address" maxlength="255" required>
+                </label>
+                <div class="checkout-field-row">
+                    <label class="checkout-field">
+                        <span>City</span>
+                        <input name="deliveryCity" type="text" autocomplete="address-level2" maxlength="120" required>
+                    </label>
+                    <label class="checkout-field">
+                        <span>State</span>
+                        <input name="deliveryState" type="text" autocomplete="address-level1" maxlength="120" required>
+                    </label>
+                </div>
+                <label class="checkout-field">
+                    <span>Delivery instructions <small>Optional</small></span>
+                    <textarea name="deliveryInstructions" rows="2"></textarea>
+                </label>
+            </section>
+
+            <section class="cart-section order-summary-section" aria-labelledby="orderSummaryHeading">
+                <div class="cart-section-heading"><span class="cart-step">04</span><h3 id="orderSummaryHeading">Order Summary</h3></div>
+                <div id="orderSummaryItems" class="summary-items"></div>
+                <dl class="summary-totals">
+                    <div><dt>Subtotal estimate</dt><dd id="cartSubtotal">₦0</dd></div>
+                    <div><dt>Delivery fee</dt><dd>Calculated by backend</dd></div>
+                    <div><dt>Discount</dt><dd>Calculated by backend</dd></div>
+                    <div class="summary-total"><dt>Estimated total</dt><dd id="cartEstimatedTotal">₦0</dd></div>
+                </dl>
+                <p class="summary-note">Final prices, delivery fee, discount, and total are confirmed by the store.</p>
+            </section>
+
+            <div class="place-order-area">
+                <p id="cartMessage" class="cart-message" role="status" aria-live="polite"></p>
+                <button id="placeOrderBtn" class="place-order-btn" type="submit" disabled>Place Order</button>
+                <p class="secure-order-note">Order totals are confirmed securely by Superior Touch.</p>
+            </div>
+        </form>
+    </div>
+
+    <section id="orderConfirmation" class="order-confirmation" aria-live="polite" hidden></section>
+</aside>
+
 <!-- Hero -->
 
 <section class="hero">
